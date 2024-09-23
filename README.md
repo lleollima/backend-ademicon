@@ -65,3 +65,11 @@ http://localhost:3000
 
 
 ```
+### Insomnia
+
+há dentro do projeto um arquivo chamado insomnia.json ma raiz do projeto para ser importado
+no  programa insomnia. Nele há todos os endpoints criados no desenvolvimento desse projeto.
+
+### Agradecimento
+
+Gostaria de agradecer pela oportunidade , obrigado!

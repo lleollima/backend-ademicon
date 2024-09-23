@@ -117,23 +117,12 @@ const salesBySeller = async (request: Request, response: Response) => {
             },
             { $unwind: '$sellerJoin' },
             {
-                $lookup: {
-                    from: 'typespayments',
-                    localField: 'typePayment',
-                    foreignField: '_id',
-                    as: 'paymentJoin'
-                }
-            },
-            {
-                $unwind: '$paymentJoin'
-            },
-            {
                 $group: {
                     _id: {
                         name: '$sellerJoin.name',
                     },
                     totalCommission: {$sum: {$multiply: ['$value', {
-                                $divide: ['$paymentJoin.commissionPercentage', 100]
+                                $divide: ['$commissionValue', 100]
                             }]} }
                 },
             },
@@ -142,7 +131,7 @@ const salesBySeller = async (request: Request, response: Response) => {
         const data = aggregateData.map(item => ({
 
                 name: item._id.name,
-                totalCommission: item.totalCommission
+                totalCommission: parseFloat(item.totalCommission.toString())
 
         }));
 

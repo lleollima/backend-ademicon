@@ -103,17 +103,6 @@ const show = async (request: Request, response: Response) => {
                        'seller': seller._id
                 }
             },
-            {
-              $lookup: {
-                  from: 'typespayments',
-                  localField: 'typePayment',
-                  foreignField: '_id',
-                  as: 'paymentTypeDetails'
-              }
-            },
-            {
-                $unwind: '$paymentTypeDetails'
-            },
 
             {
                 $group: {
@@ -127,9 +116,7 @@ const show = async (request: Request, response: Response) => {
                     },
                     totalValue: {$sum: '$value'},
                     totalSales: {$sum: 1},
-                    totalCommission: {$sum: {$multiply: ['$value', {
-                        $divide: ['$paymentTypeDetails.commissionPercentage', 100]
-                            }]} }
+                    totalCommission: {$sum: '$commissionValue' }
 
                 }
             },
@@ -146,7 +133,7 @@ const show = async (request: Request, response: Response) => {
                 yearMonth: sale._id.yearMonth,
                 totalSales: sale.totalSales,
                 totalValue: sale.totalValue,
-                totalCommission: sale.totalCommission
+                totalCommission: parseFloat(sale.totalCommission.toString())
             }
         })
 

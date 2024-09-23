@@ -110,7 +110,7 @@ const index = async (request: Request, response: Response) => {
 const show = async (request: Request, response: Response) => {
     const id = request.params.id;
     try {
-        const sale = await SaleModel.findById(id).select('-updatedAt -createdAt').populate(['seller', 'customer', 'typePayment']);
+        const sale = await SaleModel.findById(id).select('-updatedAt -createdAt ').populate(['seller', 'customer', 'typePayment']);
         if (!sale) {
             return response.status(404).json({ message: 'Venda não encontrada' });
         }

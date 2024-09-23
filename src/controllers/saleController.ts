@@ -26,7 +26,7 @@ const index = async (request: Request, response: Response) => {
             if (filters.hasOwnProperty(key)) {
                 if(key === 'name') {
                     const regex = new RegExp(filters['name'], 'i');
-                    const customer = await CustomerModel.findOne({ name: { $regex: regex }});
+                    const customer: any = await CustomerModel.findOne({ name: { $regex: regex }});
                     if (customer) {
                         query['customer'] = new mongoose.Types.ObjectId(customer._id);
                     }else {

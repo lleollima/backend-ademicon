@@ -65,6 +65,67 @@ http://localhost:3000
 
 
 ```
+
+### Estrutura do Projeto 
+
+```bash
+
+├── src
+│   ├── controllers      # Lógica das rotas
+│   ├── models           # Modelos do Mongoose
+│   ├── routes           # Definição das rotas da API
+│   ├── helpers          #  Métodos de ajuda reaproveitaveis e integração com APIs externas
+│   ├── configs          # Configurações
+│   ├── services         # Configuração de serviços externos
+│   └── index.ts         # Inicialização do servidor
+├── docker-compose.yml   # Configuração do Docker
+├── .env                 # Variáveis de ambiente
+└── README.md            # Documentação do projeto
+
+```
+
+### Funcionalidades 
+
+- Vendedores: CRUD completo para gerenciar vendedores.
+- Clientes: CRUD completo para gerenciar clientes.
+- Vendas: Registra vendas com dados de clientes e vendedores.
+- Formas de Pagamento: CRUD para diferentes métodos de pagamento.
+- Relatórios: Geração de relatórios de vendas por data e vendedor.
+- Consulta de Endereço: Integração com a API ViaCEP para buscar informações de endereço com base no CEP.
+
+### Endpoints
+
+
+#### Vendedores
+- GET /sellers: Retorna todos os vendedores.
+- GET /sellers/:id: Retorna detalhes de um vendedor
+- POST /sellers: Cria um novo vendedor.
+- PATCH /sellers/:id: Atualiza os dados de um vendedor.
+- DELETE /sellers/:id: Remove um vendedor.
+#### Clientes
+- GET /clients: Retorna todos os clientes.
+- GET /clients/:id: Retorna detalhes de um vendedor
+- POST /clients: Cria um novo cliente.
+- PATCH /clients/:id: Atualiza os dados de um cliente.
+- DELETE /clients/:id: Remove um cliente.
+#### Vendas
+- GET /sales: Retorna todas as vendas.
+- GET /sales/:id: Retorna detalhes de uma venda
+- POST /sales: Registra uma nova venda.
+- PATCH /sales/:id: Atualiza os dados de uma venda.
+- DELETE /sales/:id: Remove uma venda.
+#### Tipos de Pagamento
+- GET /typesofpayment: Retorna todos os tipos de pagamento.
+- GET /typesofpayment/:id: Retorna detalhes de um tipo de pagamento.
+- POST /typesofpayment: Registra um novo tipo de pagamento.
+- PATCH /typesofpayment/:id: Atualiza os dados de um tipo de pagamento.
+- DELETE /typesofpayment/:id: Remove um tipo de pagamento.
+#### Relatórios
+- GET /sales-by-seller: Retorna todos os vendedores e suas comissões.
+- GET /total-customer: Retorna o total de clientes
+- GET /sales-by-payments-type: Retorna as vendas agrupadas por tipo de pagamento.
+
+
 ### Insomnia
 
 há dentro do projeto um arquivo chamado insomnia.json ma raiz do projeto para ser importado

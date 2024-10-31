@@ -5,16 +5,22 @@ import clientRoutes from "./routes/customerRoutes";
 import typesPaymentRoutes from "./routes/typesPaymentRoutes";
 import saleRoutes from "./routes/saleRoutes";
 import reportRoutes from "./routes/reportRoutes";
-const app = express();
-const port = process.env.PORT || 3000;
+import dotenv from "dotenv";
 
-// conectar ao banco de dados
+
+const app = express();
+
+dotenv.config()
+
+const port = process.env.SERVER_PORT || 3000;
+
+// connect to database
 connectDB()
 
 app.use(express.json());
 
 
-// rota dos comentarios
+// routes includes
 app.use(sellerRoutes, clientRoutes, typesPaymentRoutes, saleRoutes, reportRoutes)
 
 app.get('/', (req, res) => {
